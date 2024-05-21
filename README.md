@@ -10,10 +10,12 @@ This is Proof of Concept for real-time or streaming anaytics on AWS.
 
 ## Tech Stack
 
-EC2
-Apache Kafka (hosted on EC2)
-S3
-Glue Crawler
-Glue Catalog
-IAM
-Python 3
+- AWS
+  - EC2
+  - S3
+  - Glue Crawler
+  - Glue Catalog
+  - IAM
+- Apache Kafka (hosted on EC2)
+- Python3
+
