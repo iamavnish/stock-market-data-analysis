@@ -15,6 +15,7 @@ This is Proof of Concept for real-time or streaming anaytics on AWS.
   - S3
   - Glue Crawler
   - Glue Catalog
+  - Athena
   - IAM
 - Apache Kafka (hosted on EC2)
 - Python3
