@@ -1,0 +1,66 @@
+- Sign in to AWS account
+
+- Launch an EC2 Instance (Kafka Server)
+  OS: Amazon Linux
+  Instance Type: t2.micro
+  Create Key Pair (kafka-server-key)
+  
+- Connect to Instance (using private key and SSH Client)
+  ssh -i "kafka-server-key.pem" <username>@hostname
+  
+- Download Kafka on local machine and copy to Kafka server
+  scp -i ./kafka-server-key.pem ./kafka_2.12-3.3.1.tgz <username>@hostname:/home/<username>
+  
+- Extract Kafka
+  tar -xvf kafka_2.12-3.3.1.tgz
+  
+- Install Java
+  sudo yum install java
+  
+- Check Java
+  java -version
+  
+- Start Zookeeper
+  cd kafka_2.12-3.3.1/
+  bin/zookeeper-server-start.sh config/zookeeper.properties
+  
+- Start Kafka 
+  cd kafka_2.12-3.3.1/
+  export KAFKA_HEAP_OPTS="-Xmx256M -Xms128M"
+  bin/kafka-server-start.sh config/server.properties
+  
+- Create kafka  topic
+  cd kafka_2.12-3.3.1
+  bin/kafka-topics.sh --create --topic stock-market-topic --bootstrap-server localhost:9092
+  bin/kafka-topics.sh --describe --topic stock-market-topic --bootstrap-server localhost:9092
+  
+- Write some test events into the topic
+  bin/kafka-console-producer.sh --topic stock-market-topic --bootstrap-server localhost:9092
+  
+- Read events from the topic
+  bin/kafka-console-consumer.sh --topic stock-market-topic --bootstrap-server localhost:9092
+  
+- Set up Python Virtual Environment
+  sudo python3 -m venv stock-market-data-analysis-venv
+
+- Activate Python Virtual Environment  
+  source stock-market-data-analysis-venv/bin/activate
+  
+- Install packages in Python Virtual Environment
+  sudo stock-market-data-analysis-venv/bin/pip install pandas
+  sudo stock-market-data-analysis-venv/bin/pip install kafka-python
+  sudo stock-market-data-analysis-venv/bin/pip install s3fs
+  
+- Open 2 Python3 terminals and run commands mentioned in KafkaProducer.ipynb and KafkaConsumer.ipynb
+  Or else Launch Jupyter notebook in AWS and run those notebooks.
+
+- Create S3 bucket (stock-market-data-analysis)
+
+- Attach appropriate IAM role to EC2 instance so as to write to S3 bucket
+
+- Create a crawler (stock_market_crawler) to infer the schema from files in S3 bucket.
+  Create a new IAM role for crawler to read from S3 bucket (AWSGlueServiceRole-StockMarketAnalysis)
+  Create a database in data catalog where metadata for table (based of files in S3 bucket) will be stored (stock_market_analysis_db)
+  
+- Open Athena and query files in S3 bucket.
+  Create a bucket (stock-market-data-analysis-temp-bucket) for storing temporary / intermediate data
