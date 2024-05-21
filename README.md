@@ -22,5 +22,5 @@ This is Proof of Concept for real-time or streaming anaytics on AWS.
 
 ## Dataset
 
-CSV file containing stock market data.
+CSV file containing stock market data -
 https://github.com/iamavnish/stock-market-data-analysis/blob/main/indexProcessed.csv
