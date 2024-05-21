@@ -1,6 +1,6 @@
 # Real-Time Analytics on AWS
 
-## Overvew 
+## Overview 
 
 This is Proof of Concept for real-time or streaming anaytics on AWS. 
 
