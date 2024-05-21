@@ -1,1 +1,1 @@
-# stock-market-data-analysis
+# Real-Time Analytics on AWS
