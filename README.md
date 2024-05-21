@@ -20,3 +20,6 @@ This is Proof of Concept for real-time or streaming anaytics on AWS.
 - Apache Kafka (hosted on EC2)
 - Python3
 
+## Dataset
+
+CSV file containing stock market data
